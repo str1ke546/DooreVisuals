@@ -159,6 +159,7 @@ code {
 .btn-primary {
   background: linear-gradient(180deg, var(--cyan-2), var(--cyan));
   color: #041416;
+  -webkit-text-fill-color: #041416;
   box-shadow: 0 10px 30px rgba(46, 230, 214, 0.28);
 }
 .btn-primary:hover { filter: brightness(1.06); transform: translateY(-2px); }
@@ -404,10 +405,14 @@ code {
 }
 .download-panel h2 { font-size: 1.6rem; margin-bottom: 8px; }
 .download-panel > div > p { color: var(--muted); margin-bottom: 16px; }
-.download-panel a { color: var(--cyan); }
+.download-panel > div > p a { color: var(--cyan); }
 .install { padding-left: 18px; color: var(--muted); font-size: 0.92rem; }
 .install li { margin-bottom: 6px; }
 .download-actions { display: flex; flex-direction: column; gap: 10px; justify-content: center; }
+.download-actions .btn-primary {
+  color: #041416;
+  -webkit-text-fill-color: #041416;
+}
 
 .changelog {
   border: 1px solid var(--line);
