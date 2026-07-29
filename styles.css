@@ -484,10 +484,275 @@ code {
   .reveal { opacity: 1; transform: none; transition: none; }
 }
 
-@media (max-width: 960px) {
-  .nav-links { display: none; }
-  .hero, .feature-grid, .steps, .download-panel {
-    grid-template-columns: 1fr;
-  }
-  .tg-link span { display: none; }
+/* ---------- Visibility helpers ---------- */
+.mobile-only { display: none !important; }
+.menu-btn { display: none; }
+
+html.mobile-ui .desktop-only-inline { display: none !important; }
+html.mobile-ui .desktop-only-block { display: none !important; }
+html.mobile-ui .desktop-cta { display: none !important; }
+html.mobile-ui .phone-notice.mobile-only { display: flex !important; }
+html.mobile-ui a.btn.mobile-only { display: inline-flex !important; }
+html.mobile-ui a.video-card.mobile-only { display: flex !important; }
+html.mobile-ui .mobile-dock.mobile-only { display: grid !important; }
+html.mobile-ui .tg-link span { display: none; }
+
+/* ---------- Mobile UI ---------- */
+html.mobile-ui body {
+  padding-bottom: 84px;
+}
+
+html.mobile-ui .nav {
+  padding: 12px 14px;
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: rgba(5, 7, 10, 0.88);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+html.mobile-ui .logo span { font-size: 0.95rem; }
+html.mobile-ui .logo-img { width: 34px; height: 34px; }
+
+html.mobile-ui .menu-btn {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 42px;
+  height: 42px;
+  padding: 10px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,0.03);
+  cursor: pointer;
+}
+html.mobile-ui .menu-btn span {
+  display: block;
+  height: 2px;
+  width: 100%;
+  background: var(--text);
+  border-radius: 2px;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+html.mobile-ui .menu-btn.is-open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+html.mobile-ui .menu-btn.is-open span:nth-child(2) { opacity: 0; }
+html.mobile-ui .menu-btn.is-open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+html.mobile-ui .nav-links {
+  display: none;
+  position: fixed;
+  top: 64px;
+  right: 12px;
+  left: 12px;
+  z-index: 45;
+  flex-direction: column;
+  gap: 0;
+  padding: 8px;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+  background: rgba(10, 14, 18, 0.96);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.45);
+}
+html.mobile-ui .nav-links.is-open { display: flex; }
+html.mobile-ui .nav-links a {
+  padding: 14px 14px;
+  border-radius: 12px;
+  color: var(--text);
+  font-size: 1rem;
+}
+html.mobile-ui .nav-links a:active,
+html.mobile-ui .nav-links a:hover {
+  background: var(--cyan-dim);
+  color: var(--cyan);
+}
+
+html.mobile-ui .nav-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 35;
+  background: rgba(0,0,0,0.45);
+}
+
+html.mobile-ui .hero {
+  grid-template-columns: 1fr;
+  gap: 18px;
+  padding: 20px 16px 36px;
+}
+html.mobile-ui .hero h1 {
+  font-size: clamp(2rem, 9vw, 2.55rem);
+}
+html.mobile-ui .lead {
+  font-size: 0.95rem;
+  margin-bottom: 14px;
+}
+html.mobile-ui .hero-actions {
+  flex-direction: column;
+}
+html.mobile-ui .hero-actions .btn {
+  width: 100%;
+}
+
+html.mobile-ui .phone-notice {
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 14px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(46, 230, 214, 0.28);
+  background: rgba(46, 230, 214, 0.08);
+}
+html.mobile-ui .phone-notice strong {
+  color: var(--cyan-2);
+  font-size: 0.88rem;
+}
+html.mobile-ui .phone-notice p {
+  color: var(--muted);
+  font-size: 0.82rem;
+  margin: 0;
+}
+
+html.mobile-ui .hero-visual {
+  order: -1;
+  animation: none;
+}
+html.mobile-ui .hero-logo-stage {
+  min-height: 200px;
+  padding: 28px 16px 48px;
+}
+html.mobile-ui .hero-logo-stage img {
+  width: min(140px, 42%);
+}
+
+html.mobile-ui .section {
+  padding: 18px 16px 40px;
+}
+html.mobile-ui .feature-grid,
+html.mobile-ui .steps,
+html.mobile-ui .download-panel {
+  grid-template-columns: 1fr;
+}
+html.mobile-ui .feature-card:hover,
+html.mobile-ui .step-card:hover {
+  transform: none;
+}
+
+html.mobile-ui .video-card {
+  align-items: center;
+  gap: 14px;
+  padding: 16px;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+  background: linear-gradient(135deg, rgba(46,230,214,0.1), rgba(10,14,18,0.9));
+  text-decoration: none;
+  color: inherit;
+}
+html.mobile-ui .video-card-play {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  background: var(--cyan);
+  color: #041416;
+  font-size: 0.95rem;
+  font-weight: 800;
+}
+html.mobile-ui .video-card strong {
+  display: block;
+  margin-bottom: 2px;
+}
+html.mobile-ui .video-card small {
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+html.mobile-ui .download-panel {
+  padding: 18px;
+  gap: 16px;
+}
+html.mobile-ui .download-panel h2 { font-size: 1.35rem; }
+
+html.mobile-ui .cta-band {
+  margin: 0 16px 28px;
+  padding: 20px;
+  flex-direction: column;
+  align-items: stretch;
+}
+html.mobile-ui .cta-actions {
+  flex-direction: column;
+}
+html.mobile-ui .cta-actions .btn { width: 100%; }
+
+html.mobile-ui .footer {
+  padding: 20px 16px 28px;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+html.mobile-ui .mobile-dock {
+  position: fixed;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  z-index: 50;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 8px;
+  padding: 8px;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+  background: rgba(8, 12, 16, 0.92);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.45);
+}
+html.mobile-ui .mobile-dock .btn {
+  width: 100%;
+  padding: 12px 10px;
+  font-size: 0.85rem;
+}
+
+/* View switcher — always available */
+.view-switch {
+  position: fixed;
+  right: 14px;
+  bottom: 14px;
+  z-index: 60;
+}
+html.mobile-ui .view-switch {
+  right: 14px;
+  bottom: 78px;
+}
+.view-switch-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: rgba(10, 14, 18, 0.92);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+}
+.view-switch-btn:hover {
+  border-color: var(--cyan);
+  color: var(--cyan);
+}
+
+html.mobile-ui.mobile-preview body {
+  max-width: 430px;
+  margin: 0 auto;
+  border-inline: 1px solid rgba(46, 230, 214, 0.12);
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.4);
 }
