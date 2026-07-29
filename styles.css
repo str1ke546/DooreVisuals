@@ -157,12 +157,17 @@ code {
   overflow: hidden;
 }
 .btn-primary {
-  background: linear-gradient(180deg, var(--cyan-2), var(--cyan));
-  color: #041416;
-  -webkit-text-fill-color: #041416;
+  background: linear-gradient(180deg, #9ff8ef, #2ee6d6);
+  color: #000 !important;
+  -webkit-text-fill-color: #000 !important;
   box-shadow: 0 10px 30px rgba(46, 230, 214, 0.28);
 }
 .btn-primary:hover { filter: brightness(1.06); transform: translateY(-2px); }
+.btn-primary.btn-shine::after {
+  pointer-events: none;
+  mix-blend-mode: soft-light;
+  opacity: 0.55;
+}
 .btn-ghost {
   background: rgba(255,255,255,0.03);
   border-color: var(--line);
@@ -410,8 +415,8 @@ code {
 .install li { margin-bottom: 6px; }
 .download-actions { display: flex; flex-direction: column; gap: 10px; justify-content: center; }
 .download-actions .btn-primary {
-  color: #041416;
-  -webkit-text-fill-color: #041416;
+  color: #000 !important;
+  -webkit-text-fill-color: #000 !important;
 }
 
 .changelog {
